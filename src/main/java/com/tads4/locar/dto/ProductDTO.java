@@ -1,35 +1,24 @@
-package com.tads4.locar.entities;
+package com.tads4.locar.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.tads4.locar.entities.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="tb_product")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+
+public class ProductDTO {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private Double price;
     private String description;
-    @Column(nullable = false)
     private String imageUri;
     private String year;
     private Long kilometers;
@@ -108,5 +97,18 @@ public class Product {
         this.transmission = transmission;
     }
 
-   
+    public ProductDTO(Product entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.price = entity.getPrice();
+        this.description = entity.getDescription();
+        this.year = entity.getYear();
+        this.kilometers = entity.getKilometers();
+        this.imageUri = entity.getImageUri();
+        this.color = entity.getColor();
+        this.transmission = entity.getTransmission();
+    }
+
+    
+
 }
